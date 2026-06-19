@@ -1,0 +1,262 @@
+{
+  "version": "1.0.0",
+  "exportedAt": "2026-06-19T00:00:00.000Z",
+  "templates": [
+    {
+      "id": "tpl_pembeli_baru_chat",
+      "title": "Pembeli Baru Chat",
+      "category": "Opening",
+      "content": "Halo kak, selamat datang. Ada yang bisa kami bantu?",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_konfirmasi_pesanan_masuk",
+      "title": "Konfirmasi Pesanan Masuk",
+      "category": "Konfirmasi Pesanan",
+      "content": "Halo kak, pesanan kakak sudah kami terima ya.\n\nPesanan akan kami proses sesuai antrean. Mohon pastikan catatan/nama/desain yang dikirim sudah benar agar proses pengerjaan lebih cepat.\n\nTerima kasih kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_minta_catatan_pembeli",
+      "title": "Minta Catatan Pembeli",
+      "category": "Desain",
+      "content": "Halo kak, untuk proses desain/pesanan, mohon kirimkan catatan yang ingin dicantumkan ya.\n\nFormat:\nNama/Tulisan:\nWarna/tema:\nCatatan tambahan:\n\nJika tidak ada catatan khusus, pesanan akan kami proses sesuai standar toko.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_belum_kirim_nama_catatan",
+      "title": "Belum Kirim Nama/Catatan",
+      "category": "Follow-up",
+      "content": "Halo kak, kami belum menerima catatan/nama untuk pesanan kakak.\n\nMohon segera dikirimkan agar pesanan bisa kami proses.\n\nJika tidak ada catatan sampai batas waktu proses, pesanan akan kami lanjutkan menggunakan format standar toko ya kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_tanpa_catatan_default",
+      "title": "Tanpa Catatan Diproses Default",
+      "category": "Konfirmasi Pesanan",
+      "content": "Halo kak, karena belum ada catatan khusus pada pesanan, maka pesanan akan kami proses menggunakan format standar toko.\n\nUntuk tulisan default, kami gunakan:\nHAPPY GRADUATION\n\nTerima kasih kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_kirim_foto_wa_tidak_pecah",
+      "title": "Kirim Foto ke WA",
+      "category": "Desain",
+      "content": "Agar kualitas foto lebih aman dan tidak pecah saat diproses, mohon kirimkan foto asli ke WA kami ya.\n\nMohon kirim foto dengan kualitas asli/tidak dikompres agar hasil desain lebih maksimal. Sertakan juga nomor pesanan Shopee agar chat dan pesanan kakak lebih mudah dicari oleh tim admin.\n nomer dibawah ini 👇👇👇 ---\nkosong 89677427887",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_desain_dikirim_cek_1_jam",
+      "title": "Desain Dikirim Cek 1 Jam",
+      "category": "Desain",
+      "content": "Halo kak, desain pesanan kakak sudah kami buat dan sudah kami kirimkan di chat ini. Mohon dicek terlebih dahulu ya kak.\n\nJika desain sudah sesuai, kakak bisa balas:\nACC / SETUJU / LANJUT CETAK\n\nJika ada revisi, kakak bisa balas:\nREVISI: lalu tuliskan bagian yang ingin diubah secara jelas.\n\nContoh:\nREVISI: nama diganti dari Alya menjadi Alya Syafa\n\nJika dalam maksimal 1 jam setelah pesan ini terkirim belum ada konfirmasi atau revisi, desain akan kami anggap sudah disetujui dan akan kami lanjutkan ke proses berikutnya sesuai file yang sudah kami kirim.\n\nTerima kasih kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_pembeli_acc_desain",
+      "title": "Pembeli ACC Desain",
+      "category": "Desain",
+      "content": "Baik kak, terima kasih konfirmasinya.\n\nDesain sudah kami terima sebagai ACC dan akan kami lanjutkan ke proses berikutnya.\n\nMohon ditunggu ya kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_revisi_diterima",
+      "title": "Revisi Diterima",
+      "category": "Desain",
+      "content": "Baik kak, revisinya kami terima ya.\n\nKami bantu sesuaikan terlebih dahulu sesuai catatan dari kakak.\n\nMohon ditunggu, nanti jika sudah selesai akan kami kirimkan kembali untuk dicek.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_revisi_kurang_jelas",
+      "title": "Revisi Kurang Jelas",
+      "category": "Desain",
+      "content": "Halo kak, untuk revisinya mohon diperjelas ya agar tidak terjadi kesalahan.\n\nMohon tuliskan:\n1. Bagian yang ingin diubah\n2. Teks/nama yang benar\n3. Warna/posisi jika ada perubahan\n4. Catatan tambahan jika diperlukan\n\nSetelah lengkap, kami bantu proses revisinya.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_revisi_tidak_bisa",
+      "title": "Revisi Tidak Bisa Dilakukan",
+      "category": "Desain",
+      "content": "Mohon maaf kak, untuk bagian tersebut sudah tidak bisa direvisi karena desain sudah masuk ke proses produksi/cetak.\n\nSesuai ketentuan, revisi hanya bisa dilakukan sebelum desain diproses lebih lanjut.\n\nTerima kasih atas pengertiannya ya kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_tidak_konfirmasi_desain",
+      "title": "Tidak Konfirmasi Desain",
+      "category": "Follow-up",
+      "content": "Halo kak, kami informasikan bahwa desain yang sudah kami kirim sebelumnya belum mendapat konfirmasi.\n\nKarena sudah melewati batas waktu konfirmasi, maka desain kami anggap sudah disetujui dan pesanan akan kami lanjutkan ke proses berikutnya sesuai file yang sudah dikirim.\n\nTerima kasih kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_pesanan_sedang_diproses",
+      "title": "Pesanan Sedang Diproses",
+      "category": "Konfirmasi Pesanan",
+      "content": "Halo kak, pesanan kakak sedang kami proses ya.\n\nMohon ditunggu sesuai antrean pengerjaan.\n\nJika ada update, akan kami informasikan melalui chat/status pesanan.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_pesanan_akan_dikirim",
+      "title": "Pesanan Akan Dikirim",
+      "category": "Pengiriman",
+      "content": "Halo kak, pesanan kakak sudah masuk proses pengemasan/pengiriman ya.\n\nMohon ditunggu update resi dari sistem Shopee.\n\nTerima kasih kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_pesanan_sudah_dikirim",
+      "title": "Pesanan Sudah Dikirim",
+      "category": "Pengiriman",
+      "content": "Halo kak, pesanan kakak sudah kami kirim ya.\n\nUntuk status pengiriman, kakak bisa cek langsung melalui aplikasi Shopee pada detail pesanan.\n\nSemoga paketnya segera sampai dengan aman. Terima kasih kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_tanya_kapan_dikirim",
+      "title": "Tanya Kapan Dikirim",
+      "category": "Pengiriman",
+      "content": "Halo kak, pesanan kakak sedang kami proses sesuai antrean ya.\n\nUntuk estimasi pengiriman, akan mengikuti jadwal proses toko dan jadwal pickup ekspedisi.\n\nJika pesanan sudah dikirim, nomor resi akan otomatis muncul di aplikasi Shopee.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_aturan_sebelum_jam_12",
+      "title": "Aturan Sebelum Jam 12",
+      "category": "Aturan Toko",
+      "content": "Halo kak, untuk pesanan yang masuk dan data/catatan sudah lengkap sebelum jam 12.00, akan kami usahakan diproses di hari yang sama sesuai antrean.\n\nNamun jika data belum lengkap atau masih menunggu konfirmasi desain, proses bisa mengikuti antrean berikutnya ya kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_aturan_setelah_jam_12",
+      "title": "Aturan Setelah Jam 12",
+      "category": "Aturan Toko",
+      "content": "Halo kak, untuk pesanan yang masuk setelah jam 12.00, pesanan akan diproses mengikuti antrean berikutnya.\n\nJika data/catatan sudah lengkap, akan kami bantu proses secepatnya sesuai jadwal toko.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_aturan_weekend",
+      "title": "Aturan Weekend",
+      "category": "Aturan Toko",
+      "content": "Halo kak, kami informasikan untuk hari Sabtu proses toko terbatas/setengah hari.\n\nPesanan yang masuk atau belum lengkap setelah jam proses akan dilanjutkan pada hari kerja berikutnya.\n\nUntuk hari Minggu/libur, proses akan dilanjutkan pada hari kerja berikutnya ya kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_minta_dipercepat",
+      "title": "Minta Dipercepat",
+      "category": "Follow-up",
+      "content": "Halo kak, kami bantu proses secepat mungkin ya.\n\nNamun pesanan tetap mengikuti antrean agar semua order diproses dengan rapi dan tidak terjadi kesalahan.\n\nMohon ditunggu, akan kami usahakan yang terbaik.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_komplain_paket_belum_sampai",
+      "title": "Komplain Paket Belum Sampai",
+      "category": "Komplain",
+      "content": "Halo kak, mohon maaf atas kendalanya.\n\nJika pesanan sudah dikirim, proses pengantaran berada di pihak ekspedisi.\n\nKakak bisa cek update terbaru melalui detail pesanan di aplikasi Shopee. Jika status tidak bergerak terlalu lama, kakak juga bisa menghubungi CS Shopee/ekspedisi melalui aplikasi.\n\nKami bantu pantau juga dari sisi toko ya kak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_komplain_barang_salah_rusak",
+      "title": "Komplain Barang Salah/Rusak",
+      "category": "Komplain",
+      "content": "Halo kak, mohon maaf atas kendalanya.\n\nAgar bisa kami bantu cek, mohon kirimkan:\n1. Foto/video paket saat diterima\n2. Foto produk yang bermasalah\n3. Foto label resi\n4. Penjelasan kendalanya\n\nSetelah data lengkap, kami bantu cek dan arahkan solusi terbaik sesuai ketentuan toko/Shopee.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_pembeli_marah_tidak_sabar",
+      "title": "Pembeli Marah/Tidak Sabar",
+      "category": "Komplain",
+      "content": "Halo kak, mohon maaf atas ketidaknyamanannya.\n\nKami pahami kendalanya dan akan bantu cek terlebih dahulu agar informasinya jelas.\n\nMohon tunggu sebentar ya kak, kami pastikan dulu status pesanan/kendalanya.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_minta_cancel",
+      "title": "Pembeli Minta Cancel",
+      "category": "Aturan Toko",
+      "content": "Halo kak, untuk pembatalan pesanan mengikuti sistem dan ketentuan dari Shopee ya kak.\n\nJika pesanan belum diproses, kakak bisa mengajukan pembatalan melalui aplikasi.\n\nNamun jika pesanan sudah masuk proses produksi/pengemasan, pembatalan belum tentu bisa disetujui.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_minta_ubah_alamat",
+      "title": "Pembeli Minta Ubah Alamat",
+      "category": "Aturan Toko",
+      "content": "Halo kak, untuk perubahan alamat mengikuti sistem Shopee ya kak.\n\nJika pesanan belum diproses, kakak bisa coba ajukan perubahan/pembatalan melalui aplikasi.\n\nNamun jika pesanan sudah diproses atau sudah dikirim, alamat tidak bisa kami ubah dari sisi toko.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_closing_chat",
+      "title": "Closing Chat",
+      "category": "Closing",
+      "content": "Baik kak, terima kasih.\n\nJika ada yang ingin ditanyakan lagi, silakan chat kami ya.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_qr_siap_dibantu",
+      "title": "QR Siap Dibantu",
+      "category": "Quick Reply",
+      "content": "Baik kak, kami bantu cek terlebih dahulu ya.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_qr_mohon_tunggu",
+      "title": "QR Mohon Tunggu",
+      "category": "Quick Reply",
+      "content": "Mohon ditunggu sebentar ya kak, sedang kami cek/proses.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_qr_data_belum_lengkap",
+      "title": "QR Data Belum Lengkap",
+      "category": "Quick Reply",
+      "content": "Halo kak, data pesanan belum lengkap. Mohon kirimkan catatan/nama yang ingin dicantumkan agar bisa kami proses.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_qr_sudah_masuk_proses",
+      "title": "QR Sudah Masuk Proses",
+      "category": "Quick Reply",
+      "content": "Halo kak, pesanan sudah masuk proses pengerjaan ya. Mohon ditunggu sesuai antrean.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_qr_sudah_tidak_bisa_revisi",
+      "title": "QR Sudah Tidak Bisa Revisi",
+      "category": "Quick Reply",
+      "content": "Mohon maaf kak, untuk revisi sudah tidak bisa dilakukan karena pesanan sudah masuk proses produksi/cetak.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    },
+    {
+      "id": "tpl_qr_terima_kasih",
+      "title": "QR Terima Kasih",
+      "category": "Quick Reply",
+      "content": "Baik kak, terima kasih atas konfirmasinya.",
+      "createdAt": "2026-06-19T00:00:00.000Z",
+      "updatedAt": "2026-06-19T00:00:00.000Z"
+    }
+  ]
+}

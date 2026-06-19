@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee Seller Resi Chat Helper",
+  "description": "Fokus input resi dan buka chat buyer otomatis pada Seller Shopee.",
+  "version": "1.0.0",
+  "permissions": ["storage", "activeTab", "tabs"],
+  "host_permissions": [
+    "https://seller.shopee.co.id/*",
+    "https://*.shopee.co.id/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Cari Resi & Buka Chat Buyer"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://seller.shopee.co.id/*",
+        "https://*.shopee.co.id/*"
+      ],
+      "js": ["content-script.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

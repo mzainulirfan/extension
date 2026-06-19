@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopee Chat Template Helper</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div>
+          <h1>Shopee Chat Template Helper</h1>
+          <p id="templateCount">0 template</p>
+        </div>
+        <button id="newTemplateButton" class="icon-button" type="button" title="Tambah template" aria-label="Tambah template">+</button>
+      </header>
+
+      <section class="controls" aria-label="Pencarian template">
+        <input id="searchInput" type="search" placeholder="Cari template..." autocomplete="off">
+        <select id="categoryFilter" aria-label="Filter kategori">
+          <option value="">Semua kategori</option>
+        </select>
+      </section>
+
+      <section id="statusMessage" class="status" role="status" aria-live="polite"></section>
+
+      <section class="settings-row" aria-label="Pengaturan insert">
+        <label>
+          Mode insert
+          <select id="insertMode">
+            <option value="replace">Replace</option>
+            <option value="append">Append</option>
+          </select>
+        </label>
+        <div class="file-actions">
+          <button id="exportButton" class="secondary" type="button">Export</button>
+          <label class="secondary file-label" for="importFile">Import</label>
+          <input id="importFile" type="file" accept="application/json,.json">
+        </div>
+      </section>
+
+      <section id="templateList" class="template-list" aria-label="Daftar template"></section>
+
+      <section class="draft-section" aria-label="Draft manual">
+        <h2>Draft / Paste Manual</h2>
+        <textarea id="draftInput" rows="4" placeholder="Paste teks sementara di sini..."></textarea>
+        <div class="action-row">
+          <button id="copyDraftButton" class="secondary" type="button">Copy Draft</button>
+          <button id="insertDraftButton" class="secondary" type="button">Insert Draft</button>
+          <button id="saveDraftButton" type="button">Simpan sebagai Template</button>
+        </div>
+      </section>
+
+      <section id="variablePanel" class="variable-panel hidden" aria-label="Variabel template">
+        <div class="section-title">
+          <h2>Variabel</h2>
+          <button id="clearVariableButton" class="text-button" type="button">Tutup</button>
+        </div>
+        <div id="variableFields" class="variable-fields"></div>
+        <textarea id="previewOutput" rows="4" readonly></textarea>
+        <div class="action-row">
+          <button id="copyPreviewButton" class="secondary" type="button">Copy Preview</button>
+          <button id="insertPreviewButton" type="button">Insert Preview</button>
+        </div>
+      </section>
+
+      <section id="editorPanel" class="editor-panel hidden" aria-label="Editor template">
+        <div class="section-title">
+          <h2 id="editorTitle">Tambah Template</h2>
+          <button id="cancelEditButton" class="text-button" type="button">Batal</button>
+        </div>
+        <form id="templateForm">
+          <input id="templateId" type="hidden">
+          <label>
+            Nama template
+            <input id="titleInput" type="text" maxlength="80" required>
+          </label>
+          <label>
+            Kategori
+            <input id="categoryInput" type="text" list="categoryOptions" required>
+            <datalist id="categoryOptions"></datalist>
+          </label>
+          <label>
+            Isi template
+            <textarea id="contentInput" rows="6" maxlength="3000" required></textarea>
+          </label>
+          <button type="submit">Simpan Template</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="utils.js"></script>
+    <script src="storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

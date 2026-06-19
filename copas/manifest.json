@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee Copy Helper",
+  "version": "1.0.0",
+  "description": "Copy nomor pesanan dan catatan pembeli dari Seller Shopee dengan tombol hover.",
+  "permissions": ["clipboardWrite"],
+  "host_permissions": ["https://seller.shopee.co.id/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://seller.shopee.co.id/*"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

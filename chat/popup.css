@@ -1,0 +1,308 @@
+:root {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #667085;
+  --border: #d9e1ea;
+  --primary: #e8522c;
+  --primary-strong: #c93c1b;
+  --soft: #fff1ec;
+  --success: #147a4d;
+  --error: #b42318;
+  --shadow: 0 10px 28px rgba(23, 32, 51, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 420px;
+  min-height: 580px;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+.secondary,
+.file-label {
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+  min-height: 34px;
+  padding: 0 12px;
+}
+
+button {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+button:hover {
+  background: var(--primary-strong);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.secondary,
+.file-label {
+  align-items: center;
+  background: #eef2f6;
+  color: var(--text);
+  display: inline-flex;
+  justify-content: center;
+}
+
+.secondary:hover,
+.file-label:hover {
+  background: #e1e8f0;
+}
+
+.text-button {
+  background: transparent;
+  color: var(--primary);
+  min-height: 28px;
+  padding: 0 4px;
+}
+
+.text-button:hover {
+  background: transparent;
+  color: var(--primary-strong);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+
+.app-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-header h1 {
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.app-header p {
+  color: var(--muted);
+  margin: 4px 0 0;
+}
+
+.icon-button {
+  border-radius: 6px;
+  font-size: 22px;
+  height: 36px;
+  padding: 0;
+  width: 36px;
+}
+
+.controls {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 150px;
+}
+
+input,
+select,
+textarea {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  outline: none;
+  padding: 9px 10px;
+  width: 100%;
+}
+
+textarea {
+  line-height: 1.45;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(232, 82, 44, 0.16);
+}
+
+.status {
+  border-radius: 6px;
+  color: var(--muted);
+  min-height: 24px;
+  padding: 4px 0;
+}
+
+.status.success {
+  color: var(--success);
+}
+
+.status.error {
+  color: var(--error);
+}
+
+.settings-row {
+  align-items: end;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.settings-row label {
+  color: var(--muted);
+  display: grid;
+  gap: 4px;
+  min-width: 132px;
+}
+
+.file-actions {
+  display: flex;
+  gap: 6px;
+}
+
+#importFile {
+  display: none;
+}
+
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 255px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.template-card,
+.draft-section,
+.variable-panel,
+.editor-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.template-card {
+  padding: 10px;
+}
+
+.template-card header {
+  align-items: start;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.template-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+  word-break: break-word;
+}
+
+.badge {
+  background: var(--soft);
+  border-radius: 999px;
+  color: var(--primary-strong);
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 5px;
+  max-width: 190px;
+  overflow: hidden;
+  padding: 4px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.template-content {
+  color: #344054;
+  display: -webkit-box;
+  line-height: 1.45;
+  margin: 8px 0 10px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.card-actions,
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.card-actions button,
+.action-row button {
+  flex: 1 1 auto;
+}
+
+.draft-section,
+.variable-panel,
+.editor-panel {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+
+.draft-section h2,
+.section-title h2 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.section-title {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.variable-fields {
+  display: grid;
+  gap: 8px;
+}
+
+.variable-fields label,
+#templateForm label {
+  color: var(--muted);
+  display: grid;
+  gap: 4px;
+}
+
+#templateForm {
+  display: grid;
+  gap: 8px;
+}
+
+.empty-state {
+  color: var(--muted);
+  padding: 18px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}

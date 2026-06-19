@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee Chat Template Helper",
+  "description": "Kelola, salin, dan sisipkan template chat untuk Shopee Seller Center.",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Shopee Chat Template Helper"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "open-template-palette": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
+      },
+      "description": "Buka command palette template chat"
+    }
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://*.shopee.co.id/*",
+    "https://seller.shopee.co.id/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.shopee.co.id/*",
+        "https://seller.shopee.co.id/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
