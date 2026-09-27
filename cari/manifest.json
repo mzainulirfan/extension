@@ -2,23 +2,56 @@
   "manifest_version": 3,
   "name": "Shopee Seller Resi Chat Helper",
   "description": "Fokus input resi dan buka chat buyer otomatis pada Seller Shopee.",
-  "version": "1.0.0",
-  "permissions": ["storage", "activeTab", "tabs"],
+  "version": "1.4.0",
+  "permissions": ["storage", "activeTab"],
   "host_permissions": [
-    "https://seller.shopee.co.id/*",
-    "https://*.shopee.co.id/*"
+    "https://seller.shopee.co.id/*"
   ],
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
   "action": {
-    "default_popup": "popup.html",
-    "default_title": "Cari Resi & Buka Chat Buyer"
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Cari Resi & Buka Chat Buyer",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "focus-resi": {
+      "suggested_key": {
+        "default": "Alt+R"
+      },
+      "description": "Fokus ke input resi"
+    },
+    "run-flow": {
+      "suggested_key": {
+        "default": "Alt+J"
+      },
+      "description": "Jalankan flow resi ke chat buyer"
+    }
   },
   "content_scripts": [
     {
       "matches": [
-        "https://seller.shopee.co.id/*",
-        "https://*.shopee.co.id/*"
+        "https://seller.shopee.co.id/*"
       ],
-      "js": ["content-script.js"],
+      "js": [
+        "src/shared/constants.js",
+        "src/shared/storage.js",
+        "src/content/selectors.js",
+        "src/content/dom-utils.js",
+        "src/content/logger.js",
+        "src/content/flow.js",
+        "src/content/content.js"
+      ],
       "run_at": "document_idle"
     }
   ]

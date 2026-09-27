@@ -500,3 +500,6 @@ Baik kak, terima kasih atas konfirmasinya.
 # 14. Penutup
 
 CS wajib menjaga komunikasi tetap sopan, jelas, dan terdokumentasi. Setiap keputusan penting seperti ACC desain, revisi, atau tidak adanya konfirmasi harus disampaikan melalui chat agar ada bukti percakapan di Shopee.
+
+
+

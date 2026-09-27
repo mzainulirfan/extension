@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopee Resi Chat Helper</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <img class="app-icon" src="../../icons/icon48.png" alt="" width="28" height="28" />
+      <div class="app-title">
+        <h1>Shopee Resi Helper</h1>
+        <p class="muted shortcut-hint">Alt+R fokus resi • Alt+J jalankan flow</p>
+      </div>
+      <span class="version" id="appVersion"></span>
+    </header>
+
+    <section class="panel status-card" aria-label="Status">
+      <div class="status-line">
+        <strong>Status</strong>
+        <span class="badge" id="activeBadge" data-tone="idle">Memuat</span>
+      </div>
+      <div id="popupStatus" class="status-message" aria-live="polite">Mengambil status dari halaman aktif...</div>
+      <div class="resi-row">
+        <span class="muted" id="lastResi">Resi terakhir: -</span>
+        <button id="copyResiBtn" class="link-button" type="button" title="Salin nomor resi">Salin</button>
+      </div>
+      <div id="statusHint" class="hint" hidden></div>
+      <ol class="stepper" id="flowStepper" aria-label="Kemajuan flow">
+        <li data-step="search"><span class="dot"></span><span class="step-label">Cari</span></li>
+        <li data-step="chat"><span class="dot"></span><span class="step-label">Chat</span></li>
+        <li data-step="sidebar"><span class="dot"></span><span class="step-label">Sidebar</span></li>
+        <li data-step="done"><span class="dot"></span><span class="step-label">Selesai</span></li>
+      </ol>
+    </section>
+
+    <section class="panel" aria-label="Aksi">
+      <button id="runFlowBtn" class="primary">Jalankan Flow</button>
+      <div class="actions-row">
+        <button id="focusResiBtn" class="ghost" type="button">Fokus Resi</button>
+        <button id="retryChatBtn" class="ghost" type="button">Retry</button>
+        <button id="refreshBtn" class="icon-button" type="button" title="Muat ulang status">Refresh</button>
+      </div>
+      <button id="diagnoseBtn" class="ghost small" type="button" title="Pindai elemen halaman untuk diagnosis">Diagnosa Halaman</button>
+      <div id="diagBox" hidden>
+        <div class="log-header">
+          <strong class="muted">Hasil diagnosa</strong>
+          <button id="copyDiagBtn" class="link-button" type="button">Salin</button>
+        </div>
+        <div id="diagResult" class="diag-result"></div>
+      </div>
+    </section>
+
+    <details class="panel settings" id="settingsPanel">
+      <summary><strong>Pengaturan</strong><span class="muted">klik untuk buka</span></summary>
+      <div class="settings-body">
+        <label>
+          <span>Delay setelah scan</span>
+          <span class="input-wrap"><input id="delayAfterScan" type="number" min="0" max="10000" step="100" /><span class="unit">ms</span></span>
+        </label>
+        <label>
+          <span>Timeout tombol chat</span>
+          <span class="input-wrap"><input id="chatButtonTimeout" type="number" min="500" max="30000" step="500" /><span class="unit">ms</span></span>
+        </label>
+        <label>
+          <span>Timeout sidebar chat</span>
+          <span class="input-wrap"><input id="sidebarTimeout" type="number" min="500" max="30000" step="500" /><span class="unit">ms</span></span>
+        </label>
+        <label>
+          <span>Ulangi buka sidebar</span>
+          <span class="input-wrap"><input id="sidebarRounds" type="number" min="1" max="5" step="1" /><span class="unit">x</span></span>
+        </label>
+        <label>
+          <span>Delay refocus</span>
+          <span class="input-wrap"><input id="refocusDelay" type="number" min="0" max="10000" step="100" /><span class="unit">ms</span></span>
+        </label>
+        <label class="toggle">
+          <input id="debugLog" type="checkbox" />
+          <span>Aktifkan debug log</span>
+        </label>
+        <button id="resetSettingsBtn" class="ghost small" type="button">Kembalikan default</button>
+      </div>
+    </details>
+
+    <section class="panel" aria-label="Log terakhir">
+      <div class="log-header">
+        <strong>Log Terakhir</strong>
+        <div class="log-tools">
+          <button id="copyLogBtn" class="link-button" type="button">Salin</button>
+          <button id="clearLogBtn" class="link-button danger" type="button">Hapus</button>
+        </div>
+      </div>
+      <div id="logList" class="log-list muted">Belum ada log.</div>
+    </section>
+
+    <footer class="footer muted">Hanya aktif di seller.shopee.co.id • data tersimpan lokal</footer>
+  </div>
+
+  <script src="../shared/constants.js"></script>
+  <script src="../shared/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
