@@ -30,8 +30,10 @@ globalThis.RCH_CONSTANTS = {
     clickChatButton: 'CLICK_CHAT_BUTTON',
     waitSidebar: 'WAIT_CHAT_SIDEBAR',
     openChatItem: 'OPEN_CHAT_ITEM',
+    closeBanner: 'CLOSE_CONFIRM_BANNER',
     refocusInput: 'REFOCUS_RESI_INPUT',
     done: 'DONE',
+    standby: 'STANDBY',
     errorInput: 'ERROR_INPUT_NOT_FOUND',
     errorEmptyResi: 'ERROR_EMPTY_RESI',
     errorChatButton: 'ERROR_CHAT_BUTTON_NOT_FOUND',
@@ -49,8 +51,10 @@ globalThis.RCH_CONSTANTS = {
     CLICK_CHAT_BUTTON: 'Membuka chat buyer',
     WAIT_CHAT_SIDEBAR: 'Menunggu sidebar chat',
     OPEN_CHAT_ITEM: 'Memfokuskan chat buyer',
+    CLOSE_CONFIRM_BANNER: 'Menutup banner pesanan',
     REFOCUS_RESI_INPUT: 'Kembali ke input resi',
     DONE: 'Selesai',
+    STANDBY: 'Di luar halaman scan — standby',
     ERROR_INPUT_NOT_FOUND: 'Error: input resi tidak ditemukan',
     ERROR_EMPTY_RESI: 'Nomor resi kosong',
     ERROR_CHAT_BUTTON_NOT_FOUND: 'Error: tombol chat tidak ditemukan',
@@ -60,9 +64,15 @@ globalThis.RCH_CONSTANTS = {
   },
 
   POLL_INTERVAL: 100,
+  BANNER_APPEAR_TIMEOUT: 800,
+  BANNER_CLOSE_TIMEOUT: 3000,
   MAX_LOGS: 30,
   MAX_RESI_LENGTH: 50,
   PENDING_MAX_AGE_MS: 60000,
   SELLER_HOST_PATTERN: /(^|\.)seller\.shopee\.co\.id$/i,
+  // Definisi halaman tempat scan (pemicu mode siap-scan). Harus persis:
+  // path + nilai tiap query. Urutan query di URL tidak masalah.
+  SCAN_PATH: '/portal/sale/order',
+  SCAN_QUERY: { type: 'toship', source: 'processed', sort_by: 'ship_by_date_asc' },
   SELLER_ORDER_URL: 'https://seller.shopee.co.id/portal/sale/order?type=toship&source=processed&sort_by=ship_by_date_asc'
 };

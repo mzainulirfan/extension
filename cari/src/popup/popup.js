@@ -26,8 +26,10 @@
     CLICK_CHAT_BUTTON: 1,
     WAIT_CHAT_SIDEBAR: 2,
     OPEN_CHAT_ITEM: 2,
+    CLOSE_CONFIRM_BANNER: 2,
     REFOCUS_RESI_INPUT: 3,
     DONE: 3,
+    STANDBY: -1,
     ERROR_INPUT_NOT_FOUND: 0,
     ERROR_EMPTY_RESI: 0,
     ERROR_CHAT_BUTTON_NOT_FOUND: 1,
@@ -43,7 +45,8 @@
     ERROR_SIDEBAR_NOT_FOUND: 'Sidebar chat tidak terbuka — tekan Retry satu kali.',
     ERROR_SIDEBAR_HIDDEN: 'Panel chat ada tapi tersembunyi — klik tombol chat buyer sekali manual, lalu Retry.',
     ERROR_CHAT_ITEM_NOT_FOUND: 'Daftar chat kosong — buka manual satu chat lalu ulangi.',
-    ERROR_INACTIVE_TAB: 'Bukan halaman seller — tekan "Buka Halaman Seller" di bawah.'
+    ERROR_INACTIVE_TAB: 'Bukan halaman seller — tekan "Buka Halaman Seller" di bawah.',
+    STANDBY: 'Kembali ke halaman scan (Perlu Dikirim) untuk siap scan resi.'
   };
 
   let lastSnapshot = null;
@@ -57,6 +60,36 @@
     } catch (error) {
       return false;
     }
+  }
+
+  // Deteksi live halaman scan dari URL tab aktif (pola sama seperti content:
+  // path + nilai query harus persis, urutan bebas). Popup tak bisa akses DOM
+  // content script, jadi pola dicocokkan ulang di sini.
+  function isScanPageUrlLive(url) {
+    try {
+      const parsed = new URL(String(url));
+      if (!C.SELLER_HOST_PATTERN.test(parsed.hostname)) return false;
+      if (parsed.pathname !== (C.SCAN_PATH || '/portal/sale/order')) return false;
+      const want = C.SCAN_QUERY || {};
+      for (const key of Object.keys(want)) {
+        if (parsed.searchParams.get(key) !== String(want[key])) return false;
+      }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function renderLivePage(url) {
+    const el = document.getElementById('livePage');
+    if (!el) return;
+    if (!url) {
+      el.textContent = 'Halaman: tidak diketahui';
+      return;
+    }
+    el.textContent = isScanPageUrlLive(url)
+      ? 'Halaman: scan terdeteksi (live) — siap scan'
+      : 'Halaman: bukan halaman scan';
   }
 
   // Mode luar-seller: tombol primer jadi CTA navigasi, bukan aksi flow.
@@ -149,6 +182,7 @@
 
   function toneForState(state, hasError) {
     if (hasError || String(state || '').startsWith('ERROR')) return 'error';
+    if (state === 'STANDBY') return 'idle';
     if (state === 'DONE' || state === 'IDLE' || state === 'WAITING_RESI_ENTER') return 'ok';
     if (!state) return 'idle';
     return 'busy';
@@ -334,6 +368,7 @@
 
   async function refresh() {
     const tab = await getActiveTab();
+    renderLivePage(tab && tab.url);
     if (tab && tab.url && !isSellerUrl(tab.url)) {
       // Tab aktif jelas bukan seller → langsung mode luar-seller, tanpa coba message.
       setOffSellerMode(true);
@@ -534,5 +569,17 @@
     const local = await storage.get(STORAGE_KEYS.settings);
     renderSettings(local[STORAGE_KEYS.settings] || DEFAULT_SETTINGS, true);
     await refresh();
+
+    // Baris "Halaman: ..." ikut live selagi popup terbuka (baca URL tab saja,
+    // tanpa message ke content script) agar desinkron sesaat setelah navigasi
+    // terlihat pulih sendiri.
+    setInterval(async () => {
+      try {
+        const tab = await getActiveTab();
+        renderLivePage(tab && tab.url);
+      } catch (error) {
+        // abaikan, coba lagi interval berikutnya
+      }
+    }, 1000);
   });
 })();

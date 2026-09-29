@@ -30,5 +30,18 @@ window.RCH_SELECTORS = {
     '[role="listitem"]',
     '#infinite-list > div',
     '.ReactVirtualized__Grid__innerScrollContainer > div'
+  ],
+  // Banner "Kamu sedang chat dengan Pelanggan tentang pesanan ini" yang menutupi
+  // riwayat chat. Tombol tutupnya ikon X (<i>) di header banner.
+  confirmBanner: [
+    '.ChatbotUI-confirmbanner',
+    '.nGoG289TgU'
+  ],
+  confirmBannerClose: [
+    '.ChatbotUI-confirmbanner-top__icon',
+    '.ChatbotUI-confirmbanner-top i',
+    '.ChatbotUI-confirmbanner-top svg',
+    '.ChatbotUI-confirmbanner i',
+    '.ChatbotUI-confirmbanner svg'
   ]
 };

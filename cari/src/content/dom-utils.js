@@ -16,6 +16,25 @@ window.RCH_DOM = (() => {
     return pattern ? pattern.test(hostname) : false;
   }
 
+  // True bila URL adalah halaman tempat scan (path + nilai query harus persis,
+  // urutan query bebas). Murni baca string URL — aman dipanggil dari mana saja.
+  function isScanPageUrl(url) {
+    try {
+      const parsed = new URL(String(url || location.href));
+      const C = getConstants();
+      const pattern = C.SELLER_HOST_PATTERN;
+      if (pattern && !pattern.test(parsed.hostname)) return false;
+      if (parsed.pathname !== (C.SCAN_PATH || '/portal/sale/order')) return false;
+      const want = C.SCAN_QUERY || {};
+      for (const key of Object.keys(want)) {
+        if (parsed.searchParams.get(key) !== String(want[key])) return false;
+      }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
   function isVisible(element) {
     if (!element) return false;
     const style = window.getComputedStyle(element);
@@ -108,7 +127,7 @@ window.RCH_DOM = (() => {
           childList: true,
           subtree: true,
           attributes: true,
-          attributeFilter: ['style', 'class']
+          characterData: true
         });
       } catch (error) {
         if (!done) {
@@ -189,7 +208,59 @@ window.RCH_DOM = (() => {
     return false;
   }
 
-  // Selector generik untuk mendeteksi panel/drawer/modal yang sedang terbuka.
+  // True bila elemen chat/box sudah berisi ketikan operator (draft).
+  // Dipakai membedakan "Shopee auto-focus ke box kosong" vs "operator benar mengetik".
+  // Auto-focus kosong TIDAK boleh membatalkan refocus ke input resi.
+  function hasUserDraft(element) {
+    const el = element || document.activeElement;
+    if (!el) return false;
+    try {
+      const tag = (el.tagName || '').toLowerCase();
+      if (tag === 'textarea' || tag === 'input') {
+        return String(el.value || '').trim().length > 0;
+      }
+      if (el.isContentEditable) {
+        const text = el.innerText != null ? el.innerText : el.textContent;
+        return String(text || '').trim().length > 0;
+      }
+    } catch (error) {
+      return false;
+    }
+    return false;
+  }
+
+  // Fokus terverifikasi: coba klik+fokus+select, pastikan activeElement menempel.
+  // Mengembalikan true bila fokus bertahan di elemen. Untuk melawan panel chat
+  // yang mencuri fokus sesaat setelah terbuka (animasi/re-render Shopee).
+  async function focusVerified(element, attempts = 5, intervalMs = 200) {
+    if (!element || !isVisible(element) || isDisabled(element)) return false;
+    const tries = Math.min(8, Math.max(1, Number(attempts) || 5));
+    const gap = Math.max(50, Number(intervalMs) || 200);
+    for (let i = 1; i <= tries; i++) {
+      try {
+        scrollToCenter(element);
+      } catch (error) {
+        // lanjut walau scroll gagal
+      }
+      try {
+        element.focus({ preventScroll: true });
+      } catch (error) {
+        try {
+          element.focus();
+        } catch (ignored) {
+          // abaikan, cek activeElement di bawah
+        }
+      }
+      try {
+        element.select();
+      } catch (error) {
+        // select() bisa gagal untuk tipe input tertentu — bukan fatal
+      }
+      await sleep(gap);
+      if (document.activeElement === element) return true;
+    }
+    return document.activeElement === element;
+  }
   // Dipakai diagnosis "panel salah terbuka" vs "tidak ada panel sama sekali".
   const PANEL_PROBE_SELECTORS = [
     '[role="dialog"]',
@@ -288,6 +359,7 @@ window.RCH_DOM = (() => {
   return {
     sleep,
     isShopeeSellerPage,
+    isScanPageUrl,
     isVisible,
     isDisabled,
     findFirstElement,
@@ -300,6 +372,8 @@ window.RCH_DOM = (() => {
     clickKeyboard,
     isActiveChatItem,
     isUserTyping,
+    hasUserDraft,
+    focusVerified,
     hookSpaNavigation,
     diagnosePage,
     PANEL_PROBE_SELECTORS

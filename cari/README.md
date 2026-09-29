@@ -42,6 +42,9 @@ Aturan ubah kode:
 ## Alur & shortcut
 
 - Scan resi + `Enter` → flow jalan otomatis.
+- Pindah ke luar halaman scan → status standby (polling berhenti); kembali ke
+  halaman scan persis (`.../portal/sale/order?type=toship&source=processed&sort_by=ship_by_date_asc`)
+  → otomatis siap scan (fokus input, tanpa klik manual, tanpa menjalankan flow).
 - `Alt+R` (custom di `chrome://extensions/shortcuts`) → fokus input resi.
 - Popup: Fokus Resi / Jalankan Flow / Retry / Refresh + setting delay + log.
 

@@ -10,6 +10,7 @@
 
   let initialized = false;
   let spaHooked = false;
+  let lastSeenUrl = location.href;
 
   function handleMessage(message, sender, sendResponse) {
     if (!message || !message.action) return false;
@@ -64,7 +65,6 @@
     initialized = true;
 
     await FLOW.loadSettings();
-    await FLOW.setState(C.STATES.idle);
 
     // Pending intent dari popup luar-seller ("Buka Halaman Seller"):
     // langsung fokus siap scan. Kedaluwarsa bila lebih tua dari batas.
@@ -80,23 +80,30 @@
       pendingAction = '';
     }
 
-    const input = FLOW.getResiInput();
-    if (input) {
-      // Pending 'runFlow' (mis. dari shortcut): jalankan hanya bila input sudah terisi,
-      // kalau kosong artinya belum ada yang di-scan → cukup fokus siap scan.
-      if (pendingAction === 'runFlow' && input.value.trim()) {
+    if (DOM.isScanPageUrl(location.href)) {
+      const input = FLOW.getResiInput();
+      // Pending 'runFlow': jalankan hanya bila input sudah terisi,
+      // kalau kosong artinya belum ada yang di-scan → cukup siap scan.
+      if (pendingAction === 'runFlow' && input && input.value.trim()) {
         await FLOW.addLog('Menjalankan flow dari intent tertunda');
+        await FLOW.enterScanPage('direct-open');
         await FLOW.runResiChatFlow({ source: 'pending' });
       } else {
-        await FLOW.focusResiInput(pendingAction ? 'direct-open' : 'init');
+        await FLOW.syncPageMode(pendingAction ? 'direct-open' : 'init');
         if (pendingAction) {
           await FLOW.addLog('Siap scan: halaman seller dibuka dari luar');
         }
       }
     } else {
-      await FLOW.setState(C.STATES.errorInput);
-      FLOW.scheduleInputDetection();
+      await FLOW.syncPageMode('init');
+      if (pendingAction) {
+        await FLOW.addLog('Dibuka di luar halaman scan — standby');
+      }
     }
+
+    // Delegasi Enter level-document (capture): satu-satunya pemicu Enter.
+    // Kebal terhadap node input yang diganti Shopee tanpa ganti URL.
+    document.addEventListener('keydown', (event) => FLOW.handleDelegatedEnter(event), true);
 
     // Fallback shortcut lokal; shortcut utama via chrome.commands + service worker.
     // Alt+R = fokus resi, Alt+J = jalankan flow (keduanya diam saat mengetik di chat).
@@ -115,12 +122,26 @@
       }
     });
 
-    // Shopee adalah SPA: URL bisa ganti tanpa reload → deteksi ulang input resi.
+    // Shopee adalah SPA: URL bisa ganti tanpa reload → sinkronkan mode scan/standby.
+    // pageshow menutup lubang bfcache/tombol Back: restore tidak menjalankan
+    // ulang init dan belum tentu memicu event history yang terbungkus hook.
     if (!spaHooked) {
       spaHooked = true;
       DOM.hookSpaNavigation(async () => {
+        const prev = lastSeenUrl;
+        const curr = location.href;
+        lastSeenUrl = curr;
+        if (prev === curr) return;
         if (!DOM.isShopeeSellerPage()) return;
-        await FLOW.onSpaNavigate();
+        await FLOW.onSpaNavigate(prev, curr);
+      });
+      window.addEventListener('pageshow', async (event) => {
+        const prev = lastSeenUrl;
+        const curr = location.href;
+        lastSeenUrl = curr;
+        if (!DOM.isShopeeSellerPage()) return;
+        if (prev === curr && !event.persisted) return; // load awal, sudah ditangani init
+        await FLOW.onSpaNavigate(prev, curr);
       });
     }
 
